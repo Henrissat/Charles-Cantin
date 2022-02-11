@@ -9,9 +9,12 @@ export default function Footer() {
 };
 
 const Wrapper = styled.footer`
+    position: relative;
     height: 80px;
     display: flex;
+    width: 100%;
     justify-content : center;
     align-items: center;
     background-color: black;
+    bottom: 0;
 `;

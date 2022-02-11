@@ -14,6 +14,7 @@ export default function Home() {
 }
 
 const Wrapper = styled.div`
+    margin-top: 80px;
     width: 100%;
     maxWidth: 100%;
     background-image: url("images/pexels-olya-kobruseva-4560118.jpg"); no-repeat;

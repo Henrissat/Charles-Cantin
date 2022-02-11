@@ -19,7 +19,7 @@ export default function Header() {
                     <MenuEl isCurrentPage={location.pathname === "/"}><img style={{width:'25px', marginTop:'-5px' }} src="images/icone_home-off.png" /></MenuEl>
                 </Link>
                 <Link to="/galery">
-                    <MenuEl isCurrentPage={location.pathname === "/galery"}>Gallerie</MenuEl>
+                    <MenuEl isCurrentPage={location.pathname === "/galery"}>Galerie</MenuEl>
                 </Link>
                 <Link to="/price">
                     <MenuEl isCurrentPage={location.pathname === "/price"}>Tarifs & prestations</MenuEl>
