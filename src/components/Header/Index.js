@@ -16,16 +16,21 @@ export default function Header() {
         <Wrapper>
             <Nav>
                 <Link to="/">
-                    <MenuEl isCurrentPage={location.pathname === "/"}><img style={{width:'25px', marginTop:'-5px' }} src="images/icone_home-off.png" /></MenuEl>
+                    <MenuEl isCurrentPage={location.pathname === "/"}>
+                        <img style={{width:'25px', marginTop:'-5px' }} src="images/icone_home-off.png" />
+                    </MenuEl>
                 </Link>
                 <Link to="/galery">
                     <MenuEl isCurrentPage={location.pathname === "/galery"}>Galerie</MenuEl>
                 </Link>
+                <Logo>Charles Cantin</Logo>
                 <Link to="/price">
                     <MenuEl isCurrentPage={location.pathname === "/price"}>Tarifs & prestations</MenuEl>
                 </Link>
                 <Link to="/Contact">
-                    <MenuEl isCurrentPage={location.pathname === "/Contact"}><img style={{width:'25px', marginTop:'-5px' }} src="images/icone_contact-off.png" /></MenuEl>
+                    <MenuEl isCurrentPage={location.pathname === "/Contact"}>
+                        <img style={{width:'25px', marginTop:'-5px' }} src="images/icone_contact-off.png" />
+                    </MenuEl>
                 </Link>
             </Nav>
             <Linepink />
@@ -69,12 +74,23 @@ const Nav = styled.nav`
     display: flex;
 `;
 
+const Logo = styled.div`
+    font-family: londontwo;
+    text-transform: uppercase;
+    font-size: 23px;
+    font-weight: bold;
+    width: 129px;
+    @media screen and (max-width: 780px) {
+        display: none;
+    }
+`;
+
 const MenuEl= styled.p`
     color: #ff8e93; 
     font-size: 18px;
-    margin: 0 30px;
+    margin: 15px 30px;
     height: 25px;
-    padding: 10px 5px 0 5px;
+    padding: 5px 5px 0 5px;
     border-radius: 30px;
     cursor: pointer;
     text-decoration: none;

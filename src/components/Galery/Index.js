@@ -25,7 +25,8 @@ export default function Galery() {
 
     return(
         <Wrapper>
-
+            <HeaderBack />
+            <h1>Galerie</h1>
             <div className="containter-portfolio">
                 <div className="portfolio-filter">
                     <a active={filter === "all"} onClick={() => setFilter("all")}>All</a>
@@ -66,4 +67,18 @@ export default function Galery() {
 const Wrapper = styled.div`
     width: 100%;
     margin-top: 75px;
+`;
+const HeaderBack = styled.div`
+    position: absolute;
+    z-index: -1;
+    width: 100%;
+    maxWidth: 100%;
+    height: 400px;
+    background-image: url("images/pexels-photo-4463762.jpeg"); no-repeat;
+    filter: brightness(80%);
+    background-position: center;
+    background-size: cover; 
+    @media screen and (max-width: 780px) {
+        background-image: url("https://images.pexels.com/photos/4463762/pexels-photo-4463762.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260"); no-repeat;
+    }
 `;
