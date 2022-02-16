@@ -3,64 +3,59 @@ import React, { Component, useState } from "react";
 import "./contact.css";
 
 export default function Contact() {
+    const [name, setName] = useState("");
+    const [firstname, setFirstname] = useState("");
     const [email, setEmail] = useState("");
     const [country, setCountry] = useState("");
-    const [acceptedTerms, setAcceptedTerms] = useState(false);
+
     
     const handleSubmit = (event) => {
         console.log(`
-          Email: ${email}
-          Password: ${password}
-          Country: ${country}
-          Accepted Terms: ${acceptedTerms}
+            Name: ${name}
+            prénom: ${firstname}
+            Email: ${email}
+            Country: ${country}
         `);
         
         event.preventDefault();
-    }
+      }
     
-    return (
+
+    return(
         <Wrapper>
-            <form onSubmit={handleSubmit}>
-                <h1>Create Account</h1>
-            
-                <label>
-                    Email:
-                    <input
-                    name="email"
-                    type="email"
-                    value={email}
-                    onChange={e => setEmail(e.target.value)}
-                    required />
-                </label>
-            
-                <label>
-                    Country:
-                    <select
-                    name="country"
-                    value={country}
-                    onChange={e => setCountry(e.target.value)}
-                    required>
-                    <option key=""></option>
-                    {countries.map(country => (
-                        <option key={country}>{country}</option>
-                    ))}
-                    </select>
-                </label>
-            
-                <label>
-                    <input
-                    name="acceptedTerms"
-                    type="checkbox"
-                    onChange={e => setAcceptedTerms(e.target.value)}
-                    required />
-                    I accept the terms of service        
-                </label>
-            
-                <button>Submit</button>
-            </form>
+            <HeaderBack />
+            <h1>Contact</h1>
+            <div className="forms-container">
+                <form name="contact" method="POST" data-netlify="true">
+                <div className="infos-cantin">
+                    <a href="tel:+33650122859">06 50 12 28 59</a><br/>
+                    <a href="mailto:charles.cantin@gmail.com">charles.cantin@gmail.com</a>
+                    <p className="txt-contact"><span>Un projet de prise de vue, une demande de devis personnalisé ?</span><br/><span> Vous avez reçu un bon cadeau et souhaitez prendre RDV.
+Vous pouvez m'envoyer un message directement sur WhatsApp, via Instagram ou par le formulaire ci-dessous.</span><br/><span>
+Je vous réponds généralement en moins de 24h.</span></p>
+                </div>
+                    <p>
+                        <label>Nom</label><br/><input type="text" name="name" />
+                    </p>
+                    <p>
+                        <label>Email</label><br/><input type="email" name="email" />
+                    </p>
+                    <p>
+                        <label>Role</label><br/><select name="role[]" multiple>
+                        <option value="customer">Client</option>
+                        <option value="follower">Follower</option>
+                        </select>
+                    </p>
+                    <p>
+                        <label>Message</label><br/><textarea name="message"></textarea>
+                    </p>
+                    <p>
+                        <button type="submit">Envoyer</button>
+                    </p>
+                </form>
+            </div>
         </Wrapper>
-      );
-    
+    );
 }
 
 const Wrapper = styled.div`
