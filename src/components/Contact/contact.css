@@ -1,0 +1,80 @@
+.forms-container{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+a{
+    text-decoration: none;
+    color:#482380;
+}
+.infos-cantin{
+    text-align: center;
+    font-size: 1.2rem;
+    line-height: 2rem;
+}
+
+.txt-contact{
+    font-size: 1rem;
+    color: #555555;
+    line-height: 2rem;
+    padding-bottom: 3vh;
+}
+
+form{
+    display: flex;
+    flex-direction: column;
+    width: 600px;
+    min-width: 100px;
+    min-height: 600px;
+    text-align: left;
+    margin-bottom: 3vh;
+}
+
+label {
+    margin-bottom: 0.5em;
+    color: #fd787e;
+    font-weight: lighter;
+}
+
+input {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 10px;
+    width: 100%;
+}
+
+input, select {
+    padding: 10px 10px;
+    border-radius: 5px;
+    border: 1px solid #d6d1d5;
+}
+
+select {
+    display: block;
+    width: 100%;
+    height: 35px;
+}
+
+textarea{
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 15px;
+    width: 100%;
+    height: 10vh;
+}
+
+button{
+    border: 0px;
+    font-family: inherit;
+    color:#FFF;
+    background: #fd787e;
+    border: none;
+    transition: #fd787e 200ms ease-in, color 200ms ease-in;
+}
+
+button:hover{
+    background: #482380;
+    color:#fff;
+  }
