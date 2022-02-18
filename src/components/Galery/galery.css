@@ -23,6 +23,9 @@ h1{
 }
 
 .portfolio-filter {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
   margin-top: 5vh;
   margin-bottom: 2vh;
   padding: 0;
@@ -34,19 +37,6 @@ h1{
   color: #7900ff;
   padding: 5px 10px;
   cursor: pointer;
-}
-
-.portfolio-filter a:hover {
-  transition-duration: 300ms;
-  color:#fff;
-  background-color: #fd787e;
-  box-shadow: 5px 2px 15px #a8b4fc80;
-}
-
-.portfolio-filter a:active {
-  transition-duration: 200ms;
-  color:#fd787e;
-  background-color: #482380;
 }
 
 .portfolio-card {
@@ -78,10 +68,6 @@ h1{
   transition: transform 500ms ease;
 }
 
-.portfolio-card img:hover {
-  transform: scale(1.1);
-}
-
 figure{
   z-index: 1;
   width: 350px;
@@ -107,11 +93,6 @@ figure figcaption{
   z-index: -1;
 }
 
-figure:hover figcaption{
-  opacity: 1;
-  transform: translateY(-19px);
-}
-
 .label-author{
   margin-top: 10px;
   color: rgb(207, 207, 207);
@@ -128,11 +109,86 @@ figure:hover figcaption{
   height: 350px;
 }
 */
+@media screen and (min-width: 780px) {
+  .portfolio-filter a:hover {
+    transition-duration: 300ms;
+    color:#fff;
+    background-color: #fd787e;
+    box-shadow: 5px 2px 15px #a8b4fc80;
+  }
+
+  .portfolio-filter a:active {
+    transition-duration: 200ms;
+    color:#fd787e;
+    background-color: #482380;
+  }
+
+  .portfolio-card img:hover {
+    transform: scale(1.1);
+  }
+
+  figure:hover figcaption{
+    opacity: 1;
+    transform: translateY(-19px);
+  }
+}
 
 @media screen and (max-width: 1024px) {  
   
 }
 
 @media screen and (max-width: 780px) {
-    
+  .portfolio-filter a{
+    padding: 0.5rem 0.8rem;
+    margin: 0.2rem;
+    background-color: #fd787e;
+    color: #fff;
+  } 
+  .portfolio-card span {
+    animation: none;
+  }
+  .portfolio-card img{
+    width: 100%;
+    /* width: 110px; */
+    height: 350px;
+    max-height: 100%;
+  }
+  figure{
+    width: 100%;
+    min-width: 100%;
+    margin: 0;
+  }
+  figcaption{
+    top: -10px;
+    opacity: 1;
+    transform: none;
+    padding: 10px 0 20px 0;
+    transition: none;
+  }
+  figure figcaption{
+    z-index: 1;
+  }
+  figure:hover figcaption{
+    transform: none;
+  }
+  .portfolio-card img:hover {
+    transform: none;
+  }
+/*
+  .portfolio-card {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+  }
+
+  .portfolio-card span {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+  }
+
+  .portfolio-card img{
+    width: 100%;
+    height: 350px;
+  }*/
 }

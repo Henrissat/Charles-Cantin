@@ -3,8 +3,8 @@ import styled from "styled-components";
 export default function Footer() {
     return(
         <Wrapper>
-            <p>Reproduction interdite | Mentions légales</p>
-            <Mention>Copyright 2021 - Charles Cantin - Made by CreactiC</Mention>
+            <Legal>Reproduction interdite | Mentions légales</Legal>
+            <Mention>Copyright 2021 - Charles Cantin - Made by CreatiC</Mention>
         </Wrapper>
     );
 };
@@ -19,7 +19,9 @@ const Wrapper = styled.footer`
     background-color: black;
     bottom: 0;
 `;
+const Legal = styled.div`
 
+`;
 const Mention = styled.div`
     color: #fff;
 `;

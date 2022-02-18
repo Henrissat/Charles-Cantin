@@ -25,9 +25,7 @@ a{
 form{
     display: flex;
     flex-direction: column;
-    width: 600px;
-    min-width: 100px;
-    min-height: 600px;
+    max-width: 600px;
     text-align: left;
     margin-bottom: 3vh;
 }
@@ -78,3 +76,15 @@ button:hover{
     background: #482380;
     color:#fff;
   }
+
+@media screen and (max-width: 1024px) {  
+}
+
+@media screen and (max-width: 780px) {
+    form{
+        margin: 0 2rem;
+    }
+    button{
+        width: 100%;
+    }
+}
