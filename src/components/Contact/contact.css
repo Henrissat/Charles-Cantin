@@ -80,7 +80,7 @@ button:hover{
 @media screen and (max-width: 1024px) {  
 }
 
-@media screen and (max-width: 780px) {
+@media (max-width: 1000px), screen and (orientation: portrait) {
     form{
         margin: 0 2rem;
     }
