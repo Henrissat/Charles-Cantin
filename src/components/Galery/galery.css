@@ -1,0 +1,198 @@
+h1{
+  font-size: 3rem;
+  margin-top: 4vh;
+  margin-bottom: 400px;
+  color:#482380;
+}
+
+.container-portfolio{
+  margin: 30px 0 40px 0;
+  margin-top: 400px;
+}
+
+.container-portfolio::before{
+  animation: 
+    transform 50s ease-in-out infinite both alternate,
+    movement 40s ease-in-out infinite both;
+}
+
+.container-portfolio::after{
+  animation: 
+    transform 80s ease-in-out infinite both alternate,
+    movement 80s ease-in-out infinite both;
+}
+
+.portfolio-filter {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 5vh;
+  margin-bottom: 2vh;
+  padding: 0;
+}
+
+.portfolio-filter a {
+  margin: 10px 10px;
+  list-style: none;
+  color: #7900ff;
+  padding: 5px 10px;
+  cursor: pointer;
+}
+
+.portfolio-card {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: 0 auto;
+  list-style: none;
+  max-width: 1200px;
+  padding: 0;
+}
+
+.portfolio-card span {
+  overflow: hidden;
+  margin: 10px 0px 50px;
+  animation: show .8s ease;
+  cursor: pointer;
+}
+
+.portfolio-card img{
+  width: 400px;
+  /* width: 110px; */
+  height: 350px;
+  max-height: 350px;
+  left: 0;
+  object-fit: cover;
+  overflow: hidden;
+  box-shadow: 0 10px 15px #a8b4fc30;
+  transition: transform 500ms ease;
+}
+
+figure{
+  z-index: 1;
+  width: 350px;
+  min-width: 300px;
+  margin: 0 5px;
+  overflow: hidden;
+  animation: show .8s ease;
+}
+figcaption{
+  font-size: 24px;
+  margin-top: 20px;
+  opacity: 0;
+  transform: translateY(-200px);
+  background: #7900ff;
+  border-radius: 0  0 10px 10px;
+  padding: 30px 0 20px 0;
+  transition: .3s;
+}
+
+figure figcaption{
+  margin: 0;
+  position: relative;
+  z-index: -1;
+}
+
+.label-author{
+  margin-top: 10px;
+  color: rgb(207, 207, 207);
+  font-size: 1rem;
+}
+
+.label-category{
+  color: white;
+  font-size: 1.2rem;
+}
+/*
+.portfolio-card :nth-child(4n){
+  width: 100%;
+  height: 350px;
+}
+*/
+@media screen and (min-width: 780px) {
+  .portfolio-filter a:hover {
+    transition-duration: 300ms;
+    color:#fff;
+    background-color: #fd787e;
+    box-shadow: 5px 2px 15px #a8b4fc80;
+  }
+
+  .portfolio-filter a:active {
+    transition-duration: 200ms;
+    color:#fd787e;
+    background-color: #482380;
+  }
+
+  .portfolio-card img:hover {
+    transform: scale(1.1);
+  }
+
+  figure:hover figcaption{
+    opacity: 1;
+    transform: translateY(-19px);
+  }
+}
+
+@media screen and (max-width: 1024px) {  
+  
+}
+
+@media (max-width: 1300px), screen and (orientation: landscape) {
+
+}
+
+
+@media (max-width: 1000px), screen and (orientation: portrait) {
+  .portfolio-filter a{
+    padding: 0.5rem 0.8rem;
+    margin: 0.2rem;
+    background-color: #fd787e;
+    color: #fff;
+  } 
+  .portfolio-card span {
+    animation: none;
+  }
+  .portfolio-card img{
+    width: 100%;
+     height: 350px;
+    max-height: 100%;
+  }
+  figure{
+    width: 100%;
+    min-width: 100%;
+    margin: 0;
+  }
+  figcaption{
+    top: -10px;
+    opacity: 1;
+    transform: none;
+    padding: 10px 0 20px 0;
+    transition: none;
+  }
+  figure figcaption{
+    z-index: 1;
+  }
+  figure:hover figcaption{
+    transform: none;
+  }
+  .portfolio-card img:hover {
+    transform: none;
+  }
+/*
+  .portfolio-card {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+  }
+
+  .portfolio-card span {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+  }
+
+  .portfolio-card img{
+    width: 100%;
+    height: 350px;
+  }*/
+}
