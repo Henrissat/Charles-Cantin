@@ -12,7 +12,7 @@ export default function Galery() {
     }, {
       encodeValuesOnly: true,
     });
-    const urlPortfolio = "http://backend-charles-cantin.herokuapp.com/api/"
+    const urlPortfolio = "https://backend-charles-cantin.herokuapp.com/api/"
     const portfolios = `${urlPortfolio}portfolios?${query}`
     const [card, setCard] = useState([]);
     useEffect(() => {
@@ -65,7 +65,7 @@ export default function Galery() {
                         {card.map(({ attributes: item }) => (
                         <figure>
                             <span className="card-container" key={item.id}>
-                            <img className="card" src={`http://backend-charles-cantin.herokuapp.com${item.img.data.attributes.url}`} />
+                            <img className="card" src={`https://backend-charles-cantin.herokuapp.com${item.img.data.attributes.url}`} />
                             </span>
                             <figcaption>
                             <div className="label-author">{item.title}</div>
