@@ -34,9 +34,10 @@ export default function Galery() {
     //appliquer les effets à chaque clic sur un bouton
     useEffect(() => {
         const filtered = card.map(({attributes: p} ) => ({
-            ...p, filtered: p.category.includes(filter)
+            ...p, filtered: p.categories.includes(filter)
         }));
         setCard(filtered)
+        console.log(card)
     }, [filter]);
 
  
@@ -65,7 +66,7 @@ export default function Galery() {
                         {card.map(({ attributes: item }) => (
                         <figure>
                             <span className="card-container" key={item.id}>
-                            <img className="card" src={`https://backend-charles-cantin.herokuapp.com${item.img.data.attributes.url}`} />
+                            <img className="card" src={`https://backend-charles-cantin.herokuapp.com/api/${item.img.data.attributes.url}`} />
                             </span>
                             <figcaption>
                             <div className="label-author">{item.title}</div>

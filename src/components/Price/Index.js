@@ -1,19 +1,38 @@
 import styled from "styled-components";
+import React, { useState, useEffect } from 'react';
 import cards from "./price.json";
 import "./price.css";
 
 
 export default function Price() {
-    const listitems = cards.map(props => (     
+    // Récupération de l'url du portfolio
+    const qs = require('qs');
+    const query = qs.stringify({
+      populate: '*', 
+    }, {
+      encodeValuesOnly: true,
+    });
+    const urlPortfolio = "https://backend-charles-cantin.herokuapp.com/api/"
+    const tarifs = `${urlPortfolio}tarifs?${query}`
+    const [price, setPrice] = useState([]);
+    useEffect(() => {
+        fetch(`${tarifs}`)
+            .then(data => data.json())
+            .then(json => setPrice(json.data))
+            .catch(error => console.log(error));
+    }, []);
+    console.log()
+
+    const listitems = price.map(({ attributes: item }) => (     
             <div className="price-card">
                 <div className="price-body">
-                    <img className="price-pict" src={props.img} />
-                    <h2 className="price-title">{props.title}</h2>
-                    <p className="price-description">{props.descripton}</p>
+                    <img className="price-pict" src={item.pict} />
+                    <h2 className="price-title">{item.title}</h2>
+                    <p className="price-description">{item.descripton}</p>
                     
                 </div>
                 <div className="price-end">
-                    <p className="price-rate">{props.price}</p>
+                    <p className="price-rate">{item.rate}</p>
                     <button href="/Contact" className="price-btn">En savoir plus</button>
                 </div>
             </div>
