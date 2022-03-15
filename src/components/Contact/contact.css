@@ -10,6 +10,7 @@ a{
     color:#482380;
 }
 .infos-cantin{
+    max-width: 600px;
     text-align: center;
     font-size: 1.2rem;
     line-height: 2rem;
@@ -26,6 +27,7 @@ form{
     display: flex;
     flex-direction: column;
     max-width: 600px;
+    min-width: 500px;
     text-align: left;
     margin-bottom: 3vh;
 }

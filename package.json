@@ -8,6 +8,7 @@
   },
   "dependencies": {
     "@babel/polyfill": "^7.12.1",
+    "@formspree/react": "^2.2.4",
     "@strapi/plugin-i18n": "4.1.2",
     "@strapi/plugin-users-permissions": "4.1.2",
     "@strapi/strapi": "4.1.2",

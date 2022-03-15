@@ -1,6 +1,6 @@
 import styled from "styled-components";
+import { Link } from 'react-router-dom';
 import React, { useState, useEffect } from 'react';
-import cards from "./price.json";
 import "./price.css";
 
 
@@ -12,8 +12,8 @@ export default function Price() {
     }, {
       encodeValuesOnly: true,
     });
-    const urlPortfolio = "https://backend-charles-cantin.herokuapp.com/api/"
-    const tarifs = `${urlPortfolio}tarifs?${query}`
+    const urlTarif = "https://charles-cantin-backend.herokuapp.com/api/"
+    const tarifs = `${urlTarif}tarifs?${query}`
     const [price, setPrice] = useState([]);
     useEffect(() => {
         fetch(`${tarifs}`)
@@ -26,14 +26,14 @@ export default function Price() {
     const listitems = price.map(({ attributes: item }) => (     
             <div className="price-card">
                 <div className="price-body">
-                    <img className="price-pict" src={item.pict} />
+                    <img className="price-pict" src={`${item.pict.data.attributes.url}`} />
                     <h2 className="price-title">{item.title}</h2>
-                    <p className="price-description">{item.descripton}</p>
+                    <p className="price-description">{item.description}</p>
                     
                 </div>
                 <div className="price-end">
                     <p className="price-rate">{item.rate}</p>
-                    <button href="/Contact" className="price-btn">En savoir plus</button>
+                    <button className="price-btn"><Link to="/contact">En savoir plus</Link></button>
                 </div>
             </div>
     ))
