@@ -48,18 +48,18 @@ export default function Galery() {
             <h1>Galerie</h1>
             <div className="containter-portfolio">
             <div className="portfolio-filter">
-                    <a active={filter === "all"} onClick={() => setFilter("all")}>All</a>
+                    {/*<a active={filter === "all"} onClick={() => setFilter("all")}>All</a>
                     <a active={filter === "Mariage"} onClick={() => setFilter("Mariage")}>Mariage</a>
                     <a active={filter === "Couple"} onClick={() => setFilter("Couple")}>Couple</a>
                     <a active={filter === "Portrait"} onClick={() => setFilter("Portrait")}>Portrait</a>
                     <a active={filter === "Grossesse"} onClick={() => setFilter("Grossesse")}>Grossesse</a>
                     <a active={filter === "Bébé"} onClick={() => setFilter("Bébé")}>Bébé</a>
                     <a active={filter === "Famille"} onClick={() => setFilter("Famille")}>Famille</a>
-                    <a active={filter === "Bapteme"} onClick={() => setFilter("Bapteme")}>Baptême</a>
+                    <a active={filter === "Bapteme"} onClick={() => setFilter("Bapteme")}>Baptême</a>*/}
                     
-                    {/* card.map(({ attributes: item }) => (
-                        <a active={filter === item.category} onClick={() => setFilter(item.category)} key={item.id}>{item.category}</a>)
-                    )*/}
+                    {card.map(({ attributes: item }) => (
+                        <a active={filter === item.categories} onClick={() => setFilter(item.categories)} key={item.id}>{item.categories}</a>)
+                    )}
                 </div>
                 <SRLWrapper>
                     <div className="portfolio-card">
