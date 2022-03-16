@@ -5,6 +5,7 @@ import { SRLWrapper } from "simple-react-lightbox";
 
 
 export default function Galery() {
+    //gestion du chargement
     const [isLoading, setIsLoading] = useState(true);
     // Gestion des filtres de la bdd Strapi
     const qs = require('qs');
@@ -46,7 +47,7 @@ export default function Galery() {
                 <div className="portfolio-filter"> 
                     <a active={filter === "all"} onClick={() => setFilter("All")}>All</a>
                     {/* creation dynamique du menu filtre */}
-                    {menuFiltered().map(( item ) => (
+                    { isLoading ? "loading" : menuFiltered().map(( item ) => (
                         <a active={filter === item} 
                         onClick={() => setFilter(item)} key={item}>{item}</a>)
                     )}
@@ -54,7 +55,7 @@ export default function Galery() {
                 <SRLWrapper>
                     <div className="portfolio-card">
                     {/* creation dynamique des cards photos */}
-                    {card.filter((i) => {
+                    { isLoading ? "loading" : card.filter((i) => {
                         return filter === "All" ? i[0] !== "" : i.attributes.categories === filter 
                         }).map(( item ) => (
                         <figure key={item.id}>
@@ -77,8 +78,6 @@ export default function Galery() {
 const Wrapper = styled.div`
     width: 100%;
     margin-top: 75px;
-`;
-const Buttons = styled.div`
 `;
 const HeaderBack = styled.div`
     position: absolute;
