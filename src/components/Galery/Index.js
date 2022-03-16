@@ -15,30 +15,34 @@ export default function Galery() {
     const urlPortfolio = "https://charles-cantin-backend.herokuapp.com/api/"
     const portfolios = `${urlPortfolio}portfolios?${query}`
     const [card, setCard] = useState([]);
-    useEffect(() => {
-        fetch(`${portfolios}`)
-            .then(data => data.json())
-            .then(json => setCard(json.data))
-            .catch(error => console.log(error));
-    }, []);
+        useEffect(() => {
+            const fetchData = async () =>{
+                const resp = await fetch(portfolios)
+                const json = await resp.json()
+                if(resp.ok) setCard(json.data)
+            }
+            fetchData()
+            // gestion des erreur à mettre en place
+            .catch(err => {console.log(err)})
+        }, [])
     console.log(card)
-    
-
+ 
     /*
     // initialiser la valeur à all
     const all = foreach(filter = false)
     filter = true*/
 
     // gérer les états du filtre
-    const [filter, setFilter] = useState("Portrait")
+    const [filter, setFilter] = useState("Famille")
     //appliquer les effets à chaque clic sur un bouton
+    
     useEffect(() => {
         const filtered = card.map(({attributes: p} ) => ({
             ...p, filtered: p.categories.includes(filter)
         }));
         setCard(filtered)
-        console.log(card)
     }, [filter]);
+    console.log(card)
 
  
 
@@ -47,19 +51,19 @@ export default function Galery() {
             <HeaderBack />
             <h1>Galerie</h1>
             <div className="containter-portfolio">
-            <div className="portfolio-filter">
-                    {/*<a active={filter === "all"} onClick={() => setFilter("all")}>All</a>
+                <div className="portfolio-filter">  
+                    <a active={filter === "all"} onClick={() => setFilter("all")}>All</a>
                     <a active={filter === "Mariage"} onClick={() => setFilter("Mariage")}>Mariage</a>
                     <a active={filter === "Couple"} onClick={() => setFilter("Couple")}>Couple</a>
                     <a active={filter === "Portrait"} onClick={() => setFilter("Portrait")}>Portrait</a>
                     <a active={filter === "Grossesse"} onClick={() => setFilter("Grossesse")}>Grossesse</a>
                     <a active={filter === "Bébé"} onClick={() => setFilter("Bébé")}>Bébé</a>
                     <a active={filter === "Famille"} onClick={() => setFilter("Famille")}>Famille</a>
-                    <a active={filter === "Bapteme"} onClick={() => setFilter("Bapteme")}>Baptême</a>*/}
-                    
-                    {card.map(({ attributes: item }) => (
+                    <a active={filter === "Bapteme"} onClick={() => setFilter("Bapteme")}>Baptême</a>
+
+                    {/*card.map(({ attributes: item }) => (
                         <a active={filter === item.categories} onClick={() => setFilter(item.categories)} key={item.id}>{item.categories}</a>)
-                    )}
+                    )*/}
                 </div>
                 <SRLWrapper>
                     <div className="portfolio-card">
@@ -67,9 +71,9 @@ export default function Galery() {
                         <figure>
                             <span className="card-container" key={item.id}>
                             <img className="card" src={`${item.img.data.attributes.url}`} />
-                            {/*<img className="card" src={`${item.img.data.attributes.name}`} />*/}
                             </span>
                             <figcaption>
+                            <div>{item.categories}</div>
                             <div className="label-author">{item.title}</div>
                             <span className="label-category">{item.description}</span>
                             </figcaption>
@@ -164,14 +168,24 @@ const HeaderBack = styled.div`
     }, {
       encodeValuesOnly: true,
     });
-    const urlPortfolio = "http://localhost:1337/api/"
-    const Portfolios = `${urlPortfolio}portfolios?${query}`
+    const urlPortfolio = "https://charles-cantin-backend.herokuapp.com/api/"
+    const portfolios = `${urlPortfolio}portfolios?${query}`
     const [card, setCard] = useState([]);
     useEffect(() => {
-        fetch(`${Portfolios}`)
+        fetch(`${portfolios}`)
             .then(data => data.json())
-            .then(json => setCard(JSON.stringify(json.data)))
+            .then(json => setCard(json.data))
             .catch(error => console.log(error));
-    
     }, []);
     */
+
+/*
+<a active={filter === "all"} onClick={() => setFilter("all")}>All</a>
+<a active={filter === "Mariage"} onClick={() => setFilter("Mariage")}>Mariage</a>
+<a active={filter === "Couple"} onClick={() => setFilter("Couple")}>Couple</a>
+<a active={filter === "Portrait"} onClick={() => setFilter("Portrait")}>Portrait</a>
+<a active={filter === "Grossesse"} onClick={() => setFilter("Grossesse")}>Grossesse</a>
+<a active={filter === "Bébé"} onClick={() => setFilter("Bébé")}>Bébé</a>
+<a active={filter === "Famille"} onClick={() => setFilter("Famille")}>Famille</a>
+<a active={filter === "Bapteme"} onClick={() => setFilter("Bapteme")}>Baptême</a>
+*/
