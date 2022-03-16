@@ -5,72 +5,60 @@ import { SRLWrapper } from "simple-react-lightbox";
 
 
 export default function Galery() {
-    // Récupération de l'url du portfolio
+    const [isLoading, setIsLoading] = useState(true);
+    // Gestion des filtres de la bdd Strapi
     const qs = require('qs');
     const query = qs.stringify({
       populate: '*', 
     }, {
       encodeValuesOnly: true,
     });
+    //Récupération de l'url du portfolio
     const urlPortfolio = "https://charles-cantin-backend.herokuapp.com/api/"
     const portfolios = `${urlPortfolio}portfolios?${query}`
     const [card, setCard] = useState([]);
-        useEffect(() => {
-            const fetchData = async () =>{
-                const resp = await fetch(portfolios)
-                const json = await resp.json()
-                if(resp.ok) setCard(json.data)
-            }
-            fetchData()
-            // gestion des erreur à mettre en place
-            .catch(err => {console.log(err)})
-        }, [])
-    console.log(card)
- 
-    /*
-    // initialiser la valeur à all
-    const all = foreach(filter = false)
-    filter = true*/
-
-    // gérer les états du filtre
-    const [filter, setFilter] = useState("Famille")
-    //appliquer les effets à chaque clic sur un bouton
-    
+    // création du fichier json
     useEffect(() => {
-        const filtered = card.map(( p )  => ({
-            ...p, filtered: p.attributes.categories.includes(filter)
-        }));
-        setCard(filtered)
-    }, [filter]);
-    console.log(filter)
-
- 
+        fetchData()
+      }, []);
+    const fetchData = async () => {
+        const resp = await fetch(portfolios)
+        const json = await resp.json()
+        setCard(json.data)
+        setIsLoading(false);
+    }  
+    
+    // gérer les états du filtre
+    const [filter, setFilter] = useState("All")
+    // Créer le menu catégorie
+    const menuFiltered = () => {
+        const filtered = card.map((p) => p.attributes.categories);
+        const filteredOK = filtered.filter((category, numb, array) => array.indexOf(category) === numb);
+        console.log(filteredOK)
+        return filteredOK;   
+    }
 
     return(
         <Wrapper>
             <HeaderBack />
             <h1>Galerie</h1>
             <div className="containter-portfolio">
-                <div className="portfolio-filter">  
-                    <a active={filter === "all"} onClick={() => setFilter("all")}>All</a>
-                    <a active={filter === "Mariage"} onClick={() => setFilter("Mariage")}>Mariage</a>
-                    <a active={filter === "Couple"} onClick={() => setFilter("Couple")}>Couple</a>
-                    <a active={filter === "Portrait"} onClick={() => setFilter("Portrait")}>Portrait</a>
-                    <a active={filter === "Grossesse"} onClick={() => setFilter("Grossesse")}>Grossesse</a>
-                    <a active={filter === "Bébé"} onClick={() => setFilter("Bébé")}>Bébé</a>
-                    <a active={filter === "Famille"} onClick={() => setFilter("Famille")}>Famille</a>
-                    <a active={filter === "Bapteme"} onClick={() => setFilter("Bapteme")}>Baptême</a>
-
-                    {/*card.map(({ attributes: item }) => (
-                        <a active={filter === item.categories} onClick={() => setFilter(item.categories)} key={item.id}>{item.categories}</a>)
-                    )*/}
+                <div className="portfolio-filter"> 
+                    <a active={filter === "all"} onClick={() => setFilter("All")}>All</a>
+                    {/* creation dynamique du menu filtre */}
+                    {menuFiltered().map(( item ) => (
+                        <a active={filter === item} 
+                        onClick={() => setFilter(item)} key={item}>{item}</a>)
+                    )}
                 </div>
                 <SRLWrapper>
                     <div className="portfolio-card">
-                        {card.map(( item ) => (
+                    {/* creation dynamique des cards photos */}
+                    {card.filter((i) => {
+                        return filter === "All" ? i[0] !== "" : i.attributes.categories === filter 
+                        }).map(( item ) => (
                         <figure key={item.id}>
                             <span className="card-container">
-                            <div>{item.attributes.categories}</div>
                             <img className="card" src={`${item.attributes.img.data.attributes.url}`} />
                             </span>
                             <figcaption>
@@ -89,6 +77,8 @@ export default function Galery() {
 const Wrapper = styled.div`
     width: 100%;
     margin-top: 75px;
+`;
+const Buttons = styled.div`
 `;
 const HeaderBack = styled.div`
     position: absolute;
@@ -142,16 +132,14 @@ const HeaderBack = styled.div`
     }, {
       encodeValuesOnly: true,
     });
-    const urlPortfolio = "http://localhost:1337/api/"
-    const portfolio = `${urlPortfolio}portfolios?${query}`
-
-    //récupération du fichier json
-    const [card, setCard] = useState([])
+    const urlPortfolio = "https://charles-cantin-backend.herokuapp.com/api/"
+    const portfolios = `${urlPortfolio}portfolios?${query}`
+    const [card, setCard] = useState([]);
     useEffect(() => {
         const fetchData = async () =>{
-            const resp = await fetch(portfolio)
+            const resp = await fetch(portfolios)
             const json = await resp.json()
-            setCard(json.data)
+            if(resp.ok) setCard(json.data)
         }
         fetchData()
         // gestion des erreur à mettre en place
