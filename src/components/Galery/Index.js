@@ -37,12 +37,12 @@ export default function Galery() {
     //appliquer les effets à chaque clic sur un bouton
     
     useEffect(() => {
-        const filtered = card.map(({attributes: p} ) => ({
-            ...p, filtered: p.categories.includes(filter)
+        const filtered = card.map(( p )  => ({
+            ...p, filtered: p.attributes.categories.includes(filter)
         }));
         setCard(filtered)
     }, [filter]);
-    console.log(card)
+    console.log(filter)
 
  
 
@@ -67,15 +67,15 @@ export default function Galery() {
                 </div>
                 <SRLWrapper>
                     <div className="portfolio-card">
-                        {card.map(({ attributes: item }) => (
-                        <figure>
-                            <span className="card-container" key={item.id}>
-                            <img className="card" src={`${item.img.data.attributes.url}`} />
+                        {card.map(( item ) => (
+                        <figure key={item.id}>
+                            <span className="card-container">
+                            <div>{item.attributes.categories}</div>
+                            <img className="card" src={`${item.attributes.img.data.attributes.url}`} />
                             </span>
                             <figcaption>
-                            <div>{item.categories}</div>
-                            <div className="label-author">{item.title}</div>
-                            <span className="label-category">{item.description}</span>
+                            <div className="label-author">{item.attributes.title}</div>
+                            <span className="label-category">{item.attributes.description}</span>
                             </figcaption>
                         </figure>
                         ))}
