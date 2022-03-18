@@ -35,12 +35,16 @@ export default function Footer() {
 
     return(
         <Wrapper>
-            <SocialMedia>
+            <Mention className="txt-footer">
                 <div className="container-sm">{listSocial}</div>
-            </SocialMedia>
-            <Mention>
-                <span>Reproduction interdite | Mentions légales |</span> 
-                <span> Copyright 2021 - Charles Cantin - Made by CreatiC Studio</span>
+                <span>
+                    Reproduction interdite |
+                    <a href="" className="link">Mentions légales</a> |
+                </span> 
+                <span> 
+                    Copyright 2021 - Charles Cantin - Made by 
+                    <a href="" className="link">CreatiC Studio</a>
+                </span>
             </Mention>
         </Wrapper>
     );
@@ -49,7 +53,7 @@ export default function Footer() {
 const Wrapper = styled.footer`
     position: relative;
     display: flex; 
-    height: 200px;
+    height: 110px;
     display: flex;
     width: 100%;
     justify-content : center;
@@ -57,11 +61,11 @@ const Wrapper = styled.footer`
     background-color: black;
     bottom: 0;
 `;
-const SocialMedia = styled.div`
-    color: #fff;
-`;
+
 const Mention = styled.div`
     display: flex; 
     flex-direction: column;
     color: #fff;
+    justify-content : center;
+    align-items: center;
 `;

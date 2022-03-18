@@ -1,15 +1,17 @@
 .container-sm{
-    flex-direction: column;
-}
-
-.social-link{
-
+    display: flex;
 }
 
 .social-pict{
-    width: 30px;
+    width: 40px;
+    margin: 5px 10px;
 }
 
-.sm{
+.link{
+    text-decoration: none;
+    color: #fff;
+}
 
+.txt-footer{
+    font-size: 0.8rem;
 }
