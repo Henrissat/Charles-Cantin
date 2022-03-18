@@ -1,12 +1,17 @@
 import React from 'react';
 import styled from "styled-components";
+import "./contact.css";
+import ReCAPTCHA from "react-google-recaptcha";
 import { useForm, ValidationError } from '@formspree/react';
 
-    function ContactForm() {
-        const [state, handleSubmit] = useForm("xrgjleeg");
+function ContactForm() {
+        const [state, handleSubmit] = useForm("xrgjleeg")
         if (state.succeeded) {
-            return <h2>Merci pour votre message!</h2>;
-    }
+            return <h2>Merci pour votre message!</h2>
+        }
+        function handleOnChange(value) {
+            console.log("Captcha value:", value);
+        }
     return (
         <Wrapper>
             <form onSubmit={handleSubmit}>
@@ -58,6 +63,10 @@ import { useForm, ValidationError } from '@formspree/react';
                     field="message"
                     errors={state.errors}
                 />
+                <ReCAPTCHA
+                    sitekey="6LeeO-4eAAAAADikMYt_MPJh1g-Z1axOjg6k1tnP"
+                    onChange={handleOnChange}
+                />
                 <button type="submit" disabled={state.submitting}>
                     Envoyer
                 </button>
@@ -73,5 +82,6 @@ const Wrapper = styled.div`
     @media (max-width: 375px) {
             }
 `;
+
 
 export default ContactForm;

@@ -5,6 +5,8 @@ import "./price.css";
 
 
 export default function Price() {
+    //gestion du chargement des données
+    const [isLoading, setIsLoading] = useState(true);
     // Récupération de l'url du portfolio
     const qs = require('qs');
     const query = qs.stringify({
@@ -20,11 +22,12 @@ export default function Price() {
             .then(data => data.json())
             .then(json => setPrice(json.data))
             .catch(error => console.log(error));
+            setIsLoading(false);
     }, []);
     console.log()
 
     const listitems = price.map(({ attributes: item }) => (     
-            <div className="price-card">
+            <div className="price-card" key={item.id}>
                 <div className="price-body">
                     <img className="price-pict" src={`${item.pict.data.attributes.url}`} />
                     <h2 className="price-title">{item.title}</h2>
@@ -42,8 +45,8 @@ export default function Price() {
         <Wrapper>
             <HeaderBack />
             <h1>Tarifs & prestations</h1>
-            <p><button className="btn-mobile">En savoir plus ></button></p>
-            <div className="container-price-cards">{listitems}</div>
+            <p><button className="btn-mobile">En savoir plus</button></p>
+            <div className="container-price-cards">{isLoading ? "Chargement des tarifs" : listitems}</div>
             <div className="txt-price">
                 <span><b>Découvrez mes forfaits adaptés à toutes vos demandes ci-dessus !</b></span><br/><span>
                 Pour les projets créatifs ou atypiques, je peux bien sûr vous proposer une offre sur mesure.</span><br/><span>
